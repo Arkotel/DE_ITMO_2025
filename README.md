@@ -12,3 +12,50 @@
 Ссылка на веб-источник: https://www.kaggle.com/datasets/khushikyad001/indian-traffic-violation/data
 
 Ссылка на сохранённый датасет: https://drive.google.com/file/d/1gJrXyvqIVSZCEjqhGhvisyMyxI0zBald/view?usp=drive_link
+
+
+# Руководство по чтению датасета
+
+## Требования
+  - Conda >= 25.7.0
+  - Python >= 3.12.3
+  - Poetry >= 2.2.0
+  - pip
+
+## Установка Conda+Poetry, создание переменного окружения
+  > [!IMPORTANT]
+  > Для работы со скриптом, необходимо скачать и поместить в пустую папку 3 файла: environment.yml, pyproject.toml и poetry.lock, установить miniconda (убедитесь, что есть в PATH) и poetry. Выполнить шаги 2 и 7
+
+1. Создать переменное окружение
+```
+cоnda env create -f environment.yml
+```
+2. Активировать переменное окружение
+```
+cоnda activate <название окружения из environment.yml>
+```
+3. Инициализировать Poetry
+```
+poetry init
+```
+4. Определить Poetry в виртуальное окружение Сonda
+```
+poetry config virtualenvs.create false
+```
+5. Добавить зависимости в проект
+```
+poetry add jupyterlab pandas matplotlib wget
+```
+6. Установить Poetry
+```
+poetry install
+```
+> [!TIP]
+> При работе в VSCode необходимо выбрать переменное окружение через "Python: Select Interpreter"
+
+7. Активировать скрипт
+```
+python3 data_loader.py
+```
+  Результат работы скрипта:
+![Скриншот с результатом команды raw_data.head(10)](images/image_data_10rows.png)
