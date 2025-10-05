@@ -29,5 +29,7 @@
 
   Результат работы программы:
   ![Скриншот с результатом работы main_api.py (загрузка данных)](api_example/images/image_main.jpg)
+
   ![Скриншот с данными API до обработки](api_example/images/image_before.jpg)
+  
   ![Скриншот с данными API после обработки](api_example/images/image_after.jpg)
