@@ -72,7 +72,7 @@ def download_api(count: int) -> list[dict]:
     items = []
     per_page = 50
     all_pages = (count + per_page - 1) // per_page
-    print(f"Загружаем {count} персонажей")
+    print(f"\nЗагружаем {count} персонажей")
 
     # Загружаем данные по страницам с прогресс-баром
     for page in tqdm(range(1, all_pages + 1), desc="Загрузка"):
