@@ -13,7 +13,7 @@ API_IMAGES = os.path.join(m_dir, "api_images")
 
 def ensure_api_dir():
     """Создаем папки, если они не существуют"""
-    print("Папки для хранения данных API созданы")
+    print("Папки для хранения данных API созданы. Загружаем данные")
     os.makedirs(API_DATA, exist_ok=True)
     os.makedirs(API_IMAGES, exist_ok=True)
 
@@ -24,10 +24,9 @@ def cleanup_api_dir():
         if os.path.exists(folder):  # Если папка существует
             for filename in os.listdir(folder):  # Смотрим все файлы в папке
                 file_path = os.path.join(folder, filename)
-                if os.path.isfile(file_path):  # Если это файл (а не папка)
+                if os.path.isfile(file_path):  # Если это файл
                     os.remove(file_path)  # Удаляем файл
                     print(f"Удалили: {filename}")
-    print("Папки пусты. Загружаем данные")
 
 
 def download_image(image_url: str, character_name: str) -> str:
