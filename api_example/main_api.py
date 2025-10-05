@@ -4,23 +4,19 @@ from api_user_input import get_character_count
 from api_loader import download_api
 from api_loader import download_image
 from api_loader import cleanup_api_dir
-from api_saver import api_to_csv
+from api_saver import api_to_csv, api_to_parquet
+
+count_max_str = os.environ.get("COUNT_MAX")
 
 
 def main():
 
     print(
         "! Данный код выполняет выгрузку данных API в csv, "
-        "а также выгрузку изображений."
+        "типизацию, сохранение в parquet, а также выгрузку изображений."
     )
-    print(
-        "! Для избежания перегруза памяти компьютера, "
-        "максимальное количество запрашиваемых данных - 10"
-    )
-    print(
-        "! Данное число можно изменить в файле api_user_input.py "
-        "на усмотрение пользователя."
-    )
+    print(f"! Максимальное количество запрашиваемых данных - {count_max_str}")
+    print("! Число можно изменить в environment.yml.")
 
     try:
         count = get_character_count()
@@ -31,15 +27,15 @@ def main():
 
         cleanup_api_dir()
 
-        api_dataset_raw = download_api(count)
-        if not api_dataset_raw:
+        raw_api_dataset = download_api(count)
+        if not raw_api_dataset:
             print("Не удалось загрузить данные")
             return
 
         downloaded_images = 0
-        total_count = len(api_dataset_raw)
+        total_count = len(raw_api_dataset)
 
-        for i, character in enumerate(api_dataset_raw, 1):
+        for i, character in enumerate(raw_api_dataset, 1):
             image_url = character.get("imageUrl")
             character_name = character.get("name", "Unknown")
             print(f"[{i}/{total_count}] {character_name}")
@@ -54,15 +50,16 @@ def main():
 
         print(f"{downloaded_images} из {total_count} изображений скачано")  # noqa
 
-        print("\nТипы данных до обработки")
-        raw_df = pd.DataFrame(api_dataset_raw)
-        for column in raw_df.columns:
-            dtype = raw_df[column].dtype
+        raw_api = api_to_csv(raw_api_dataset)
+        print("Типы данных до обработки")
+        raw_api = pd.DataFrame(raw_api_dataset)
+        for column in raw_api.columns:
+            dtype = raw_api[column].dtype
             print(f"  {column}: {dtype}")
-        print(raw_df.head())
+        print(raw_api.head())
 
-        print("\nДанные после обработки")
-        api_dataset = api_to_csv(api_dataset_raw)
+        api_dataset = api_to_parquet(raw_api_dataset)
+        print("Данные после обработки")
         for column in api_dataset.columns:
             dtype = api_dataset[column].dtype
             print(f"  {column}: {dtype}")
