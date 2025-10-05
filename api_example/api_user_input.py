@@ -5,7 +5,7 @@ def get_character_count() -> int:
 
     while True:
         try:
-            count = int(input("Сколько персонажей Вы хотите загрузить?: "))
+            count = int(input("\nСколько персонажей Вы хотите загрузить?: "))
 
             if count <= 0:
                 print("Ошибка. Число должно быть больше 0")
