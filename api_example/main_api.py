@@ -52,16 +52,16 @@ def main():
             else:
                 print("Не удалось скачать")
 
-        print(f"\n{downloaded_images} из {total_count} изображений скачано")  # noqa
+        print(f"{downloaded_images} из {total_count} изображений скачано")  # noqa
 
-        print("Типы данных до обработки")
+        print("\nТипы данных до обработки")
         raw_df = pd.DataFrame(api_dataset_raw)
         for column in raw_df.columns:
             dtype = raw_df[column].dtype
             print(f"  {column}: {dtype}")
         print(raw_df.head())
 
-        print("Данные после обработки")
+        print("\nДанные после обработки")
         api_dataset = api_to_csv(api_dataset_raw)
         for column in api_dataset.columns:
             dtype = api_dataset[column].dtype
