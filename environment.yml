@@ -6,3 +6,5 @@ dependencies:
   - python=3.12.3
   - poetry=2.2.0
   - pip
+variables:
+  COUNT_MAX: "10"
