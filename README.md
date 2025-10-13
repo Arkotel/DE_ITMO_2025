@@ -103,3 +103,7 @@ proc_data.to_parquet(parquet_path, index=False)
 ---
 ## Работа с публичным API
 Данный подпроект подробно описан во вложенном [README.md](./api_example/README.md) в папке api_example.
+
+---
+## EDA
+Разведочный анализ данных и выводы по нему представлены в папке notebooks в файле [EDA.ipynb](./notebooks/EDA.ipynb).
