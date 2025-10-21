@@ -110,5 +110,9 @@ proc_data.to_parquet(parquet_path, index=False)
 
 ---
 ## SQL
+
+> [!TIP]
+> В poetry необходимо установить библиотеки sqlalchemy, asyncpg, python-dotenv, psycopg2
+
 На данном этапе работы было произведено подключение к базе данных access (SQLite), с использованием файла .db, считывание из неё учетных данных, подключение к базе данных homeworks (PostgreSQL), и запись в неё первых 100 строк из файла .parquet.
 Код по подключению и записи строк представлен в файле [write_to_db.py](./write_to_db.py).
