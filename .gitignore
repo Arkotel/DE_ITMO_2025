@@ -2,3 +2,6 @@ data/
 __pycache__/
 api_data/
 api_images/
+.env
+creds.db
+tests/SQL_test
