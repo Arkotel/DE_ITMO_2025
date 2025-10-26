@@ -132,11 +132,10 @@ proc_data.to_parquet(parquet_path, index=False)
 - Добавление динамических графиков
 - Включение сетки графиков (несколько графиков в одном)
 
+> [!IMPORTANT]
+> Github не отображает графики plotly из-за наличия элементов JavaScript. Один из работающих способов просмотра этих графиков - сохранение каждого графика plotly в файл .html с последующим открытием этих файлов
 
-  > [!IMPORTANT]
-  > Github не отображает графики plotly из-за наличия элементов JavaScript. Один из работающих способов просмотра этих графиков - сохранение каждого графика plotly в файл .html с последующим открытием этих файлов
-
-  Ссылки на интерактивные графики:
+Ссылки на интерактивные графики:
   - [age_geography.html](./notebooks/age_geography.html)
   - [temporal_patterns.html](./notebooks/temporal_patterns.html)
   - [violation_types.html](./notebooks/violation_types.html)
