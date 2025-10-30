@@ -5,3 +5,4 @@ api_images/
 .env
 creds.db
 tests/SQL_test
+*.lock
