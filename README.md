@@ -58,7 +58,7 @@ poetry install
 python3 data_loader.py
 ```
   Результат работы скрипта:
-![Скриншот с результатом команды raw_data.head(10)](images/image_data_10rows.png)
+![Скриншот с результатом команды raw_data.head(10)](tests/images/image_data_10rows.png)
 
 # Приведение типов данных и сохранение датасета в формате .parquet.
 
@@ -74,7 +74,7 @@ python3 data_loader.py
 ```
 print(raw_data.info())
 ```
-![Скриншот с результатом команды raw_data.info()](images/data_before.jpg)
+![Скриншот с результатом команды raw_data.info()](tests/images/data_before.jpg)
 
 ## Приведение типов данных и исправление значений
 Были проведены следующие действия:
@@ -86,7 +86,7 @@ print(raw_data.info())
 <переменная>["<название признака>"].astype("<новый тип данных>")
 ```
 Таким образом, в процессе обработки было уменьшено использование памяти:
-![Скриншот с результатом команды proc_data.info()](images/data_after.jpg)
+![Скриншот с результатом команды proc_data.info()](tests/images/data_after.jpg)
 
 ## Сохранение датасета в формате .parquet
 
@@ -115,7 +115,7 @@ proc_data.to_parquet(parquet_path, index=False)
 > В poetry необходимо установить библиотеки sqlalchemy, asyncpg, python-dotenv, psycopg2
 
 На данном этапе работы было произведено подключение к базе данных access (SQLite), с использованием файла .db, считывание из неё учетных данных, подключение к базе данных homeworks (PostgreSQL), и запись в неё первых 100 строк из файла .parquet.
-Код по подключению и записи строк представлен в файле [write_to_db.py](./write_to_db.py).
+Код по подключению и записи строк представлен в файле [write_to_db.py](tests/write_to_db.py).
 
 
 ---
