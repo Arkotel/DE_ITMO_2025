@@ -139,3 +139,111 @@ proc_data.to_parquet(parquet_path, index=False)
   - [age_geography.html](./notebooks/age_geography.html)
   - [temporal_patterns.html](./notebooks/temporal_patterns.html)
   - [violation_types.html](./notebooks/violation_types.html)
+
+---
+## ETL
+
+ETL (Extract, Transform, Load) — это комплекс процедур, который подготавливает ценные данные для аналитических систем и BI-инструментов, извлекая их из источников, преобразовывая в нужный формат и производя их выгрузку.
+
+На данном, завершающем этапе работы над проектом необходимо создать пакет ETL pipeline.
+
+### Структура ETL
+
+DE_ITMO_2025/
+|
+├── src/
+|   ├── __init__.py
+│   ├── extract.py     # Метод загрузки данных в формате .csv в data/raw
+│   ├── load.py        # Сохранение обработанных данных в .parquet в data/processed, выгрузка в базу данных (100 строк)
+│   ├── main.py        # Главный файл ETL, предоставляет CLI-интерфейс
+|   ├── transform.py   # Обработка данных, приведение типов
+│   └── validate.py    # Валидация (проверка) данных
+
+
+### Команды для запуска ETL с CLI-интерфейсом
+
+```
+python -m src.main
+python -m src.main --csv_name raw_dataset --parquet-name clean_dataset --no-write-db
+```
+
+
+Результат работы команды (python -m src.main) :
+
+- Начало ETL -
+
+CSV файл: dataset.csv
+
+Parquet файл: dataset.parquet
+
+Запись в БД: ДА
+
+Количество строк записи в БД: 100
+
+Файл .parquet найден
+Загружено 4000 строк из parquet
+
+---Валидация выходных данных---
+
+
+Пропуски:
+В данных нет пропусков
+
+Типы данных:
+violation_id: object
+violation_type: category
+fine_amount: int16
+location: category
+vehicle_type: category
+vehicle_color: category
+vehicle_model_year: int16
+registration_state: category
+driver_age: uint8
+driver_gender: category
+license_type: category
+penalty_points: uint8
+weather_condition: category
+road_condition: category
+officer_id: object
+issuing_agency: category
+license_validity: category
+number_of_passengers: uint8
+helmet_worn: category
+seatbelt_worn: category
+traffic_light_status: category
+breathalyzer_result: category
+towed: bool
+fine_paid: bool
+payment_method: category
+court_appearance_required: bool
+speed_exceeded: bool
+datetime: datetime64[ns]
+previous_violations: uint8
+Все признаки присутствуют
+
+Дубликаты: 0 записей
+
+
+---Уникальность данных---
+
+Уникальных violation_id: 4000
+Уникальность: 1.0
+
+Валидация выходных данных: пройдена
+---Валидация завершена---
+
+
+Запись в базу данных
+
+---Загрузка в базу данных---
+
+
+100 строк успешно записаны в таблицу (имя таблицы)
+
+Ключ добавлен
+Таблица найдена
+Данные успешно записаны в БД
+
+ETL завершен
+
+
