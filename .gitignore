@@ -6,3 +6,4 @@ api_images/
 creds.db
 tests/SQL_test
 *.lock
+*.yml
